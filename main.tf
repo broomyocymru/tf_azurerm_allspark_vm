@@ -41,7 +41,7 @@ resource "azurerm_virtual_machine" "test" {
         disable_password_authentication = false
 
         ssh_keys {
-          path = "/home/admin/.ssh/authorized_keys"
+          path = "/home/${var.username}/.ssh/authorized_keys"
           key_data = "${var.allspark["ssh_public"]}"
         }
     }
