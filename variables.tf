@@ -1,5 +1,6 @@
 variable "allspark" {
   description = "allspark network and storage details"
+  type = "map"
 }
 
 variable "name" {
