@@ -50,5 +50,7 @@ resource "azurerm_virtual_machine" "test" {
         environment = "${var.allspark["resource_group_name"]}"
         role = "${var.role}"
         os = "${var.os}"
+        ssh_user = "${var.username}"
+        ssh_ip = "${azurerm_network_interface.nic.private_ip_address}"
     }
 }
