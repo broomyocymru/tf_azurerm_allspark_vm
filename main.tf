@@ -15,13 +15,13 @@ resource "azurerm_virtual_machine" "test" {
     location = "${var.allspark["location"]}"
     resource_group_name = "${var.allspark["resource_group_name"]}"
     network_interface_ids = ["${azurerm_network_interface.nic.id}"]
-    vm_size = "${var.image}"
+    vm_size = "$(var.vm_options['$(var.vm)']['image'])"
 
     storage_image_reference {
-        publisher = "Canonical"
-        offer = "UbuntuServer"
-        sku = "16.04-LTS"
-        version = "latest"
+        publisher = "$(var.vm_options['$(var.vm)']['publisher'])"
+        offer = "$(var.vm_options['$(var.vm)']['offer'])"
+        sku = "$(var.vm_options['$(var.vm)']['sku'])"
+        version = "$(var.vm_options['$(var.vm)']['version'])"
     }
 
     storage_os_disk {
@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine" "test" {
     tags {
         environment = "${var.allspark["resource_group_name"]}"
         role = "${var.role}"
-        os = "${var.os}"
+        os = "$(var.vm_options['$(var.vm)']['offer'])-$(var.vm_options['$(var.vm)']['sku'])"
         ssh_user = "${var.username}"
         ssh_ip = "${azurerm_network_interface.nic.private_ip_address}"
     }
