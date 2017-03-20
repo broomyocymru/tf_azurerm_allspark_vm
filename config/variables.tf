@@ -8,6 +8,6 @@ variable "options" {
   type = "map"
   default = {
     "std_windows_server" = "Standard_D2_v2,MicrosoftWindowsServer,WindowsServer,2012-R2-Datacenter, latest"
-    "std_ubuntu_server" = "Standard_D2_v2,Canonical, UbuntuServer,16.04-LTS,latest"
+    "std_ubuntu_server" = "Standard_D2_v2,Canonical,UbuntuServer,16.04-LTS,latest"
   }
 }
