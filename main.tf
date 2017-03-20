@@ -15,13 +15,13 @@ resource "azurerm_virtual_machine" "test" {
     location = "${var.allspark["location"]}"
     resource_group_name = "${var.allspark["resource_group_name"]}"
     network_interface_ids = ["${azurerm_network_interface.nic.id}"]
-    vm_size = "${lookup(lookup(var.vm_options, var.vm), "image")}"
+    vm_size = "${lookup(var.vm, "image")}"
 
     storage_image_reference {
-        publisher = "${lookup(lookup(var.vm_options, var.vm), "publisher")}"
-        offer = "${lookup(lookup(var.vm_options, var.vm), "offer")}"
-        sku = "${lookup(lookup(var.vm_options, var.vm), "sku")}"
-        version = "${lookup(lookup(var.vm_options, var.vm), "version")}"
+        publisher = "${lookup(var.vm, "publisher")}"
+        offer = "${lookup(var.vm, "offer")}"
+        sku = "${lookup(var.vm, "sku")}"
+        version = "${lookup(var.vm, "verson")}"
     }
 
     storage_os_disk {
@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine" "test" {
     tags {
         environment = "${var.allspark["resource_group_name"]}"
         role = "${var.role}"
-        os = "${lookup(lookup(var.vm_options, var.vm), "offer")}-${lookup(lookup(var.vm_options, var.vm), "sku")}"
+        os = "${lookup(var.vm, "offer")}-${lookup(var.vm, "sku")}"
         ssh_user = "${var.username}"
         ssh_ip = "${azurerm_network_interface.nic.private_ip_address}"
     }
