@@ -17,3 +17,11 @@ output "sku" {
 output "version" {
   value = "${element(split(",",lookup(var.options, var.key)),4)}"
 }
+
+output "linux" {
+  value = "${element(split(",",lookup(var.options, var.key)),5)=="linux" ? 1 : 0}"
+}
+
+output "windows" {
+  value = "${element(split(",",lookup(var.options, var.key)),5)=="windows" ? 1 : 0}"
+}
