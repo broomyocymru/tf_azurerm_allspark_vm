@@ -3,7 +3,7 @@ output "public_ip" {
 }
 
 output "private_ip" {
-  value = "${azurerm_network_interface.nic.private_ip_address}"
+  value = "${azurerm_network_interface.private_nic.private_ip_address}"
 }
 
 output "username" {

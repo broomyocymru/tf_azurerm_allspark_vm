@@ -3,7 +3,7 @@ resource "azurerm_virtual_machine" "linux" {
     name = "${var.name}"
     location = "${var.allspark["location"]}"
     resource_group_name = "${var.allspark["resource_group_name"]}"
-    network_interface_ids = ["${azurerm_network_interface.nic.id}"]
+    network_interface_ids = ["${var.public_ip == "" ? azurerm_network_interface.private_nic.id : azurerm_network_interface.public_nic.id}"]
     vm_size = "${module.vm_config.image}"
 
     storage_image_reference {
@@ -40,6 +40,6 @@ resource "azurerm_virtual_machine" "linux" {
         role = "${var.role}"
         os = "${module.vm_config.offer}-${module.vm_config.sku}"
         ssh_user = "${var.username}"
-        ssh_ip = "${azurerm_network_interface.nic.private_ip_address}"
+        ssh_ip = "${var.public_ip == "" ? azurerm_network_interface.private_nic.private_ip_address : azurerm_public_ip.ip.id}"
     }
 }
