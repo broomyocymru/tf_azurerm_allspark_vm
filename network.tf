@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "ip" {
-  count                        = "${var.public_ip}"
+  count                        = "${var.public_ip == "" ? 0 : 1}"
   name                         = "${var.name}_publicip"
   location                     = "${var.allspark["location"]}"
   resource_group_name          = "${var.allspark["resource_group_name"]}"
