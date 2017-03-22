@@ -15,6 +15,6 @@ resource "azurerm_network_interface" "nic" {
         name = "${var.name}_ip"
         subnet_id = "${var.allspark["subnet_id"]}"
         private_ip_address_allocation = "dynamic"
-        public_ip_address_id = "${azurerm_public_ip.ip.id}"
+        public_ip_address_id = "${var.public_ip == "" ? "" : azurerm_public_ip.ip.id}"
     }
 }
