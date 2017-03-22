@@ -3,7 +3,7 @@ resource "azurerm_virtual_machine" "windows" {
     name = "${var.name}"
     location = "${var.allspark["location"]}"
     resource_group_name = "${var.allspark["resource_group_name"]}"
-    network_interface_ids = ["${var.public_ip == "" ? azurerm_network_interface.private_nic.id : azurerm_network_interface.public_nic.id}"]
+    network_interface_ids = ["${concat(azurerm_network_interface.public_nic.*.id, azurerm_network_interface.private_nic.*.id)}"]
     vm_size = "${module.vm_config.image}"
 
     storage_image_reference {
