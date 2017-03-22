@@ -22,5 +22,10 @@ variable "role" {
 
 variable "vm" {
   description = "VM Configuration"
-  default     = "std_ubuntu_server"
+  default     = "std_ubuntu_server" # bastion, std_windows_server
+}
+
+variable "public_ip" {
+  description = "Public IP"
+  default     = ""
 }

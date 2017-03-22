@@ -7,6 +7,7 @@ variable "options" {
   description = "Predefined hardware/os combos."
   type = "map"
   default = {
+    "bastion" = "Standard_D2_v2,Canonical,UbuntuServer,16.04-LTS,latest,linux"
     "std_windows_server" = "Standard_D2_v2,MicrosoftWindowsServer,WindowsServer,2012-R2-Datacenter,latest,windows"
     "std_ubuntu_server" = "Standard_D2_v2,Canonical,UbuntuServer,16.04-LTS,latest,linux"
   }
