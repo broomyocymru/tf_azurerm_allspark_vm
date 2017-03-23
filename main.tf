@@ -6,5 +6,5 @@ module "vm_config" {
 module "subnet_config" {
   source  = "subnet"
   key     = "${var.subnet}"
-  data    = "${var.allspark}"
+  allspark= "${var.allspark}"
 }
