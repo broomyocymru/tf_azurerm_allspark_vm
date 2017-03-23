@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "private_nic" {
 
     ip_configuration {
         name = "${var.name}_ip"
-        subnet_id = "${element(var.allspark["subnet_id"], index(var.allspark["subnet_name"],var.subnet))}"
+        subnet_id = "${element(split(",", var.allspark["subnet_id"]), index(split(",", var.allspark["subnet_name"]),var.subnet))}"
         private_ip_address_allocation = "dynamic"
     }
 }
@@ -28,7 +28,7 @@ resource "azurerm_network_interface" "public_nic" {
 
     ip_configuration {
         name = "${var.name}_ip"
-        subnet_id = "${element(var.allspark["subnet_id"], index(var.allspark["subnet_name"],var.subnet))}"
+        subnet_id = "${element(split(",", var.allspark["subnet_id"]), index(split(",", var.allspark["subnet_name"]),var.subnet))}"
         private_ip_address_allocation = "dynamic"
         public_ip_address_id = "${azurerm_public_ip.ip.id}"
     }
