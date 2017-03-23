@@ -20,6 +20,11 @@ variable "role" {
   default     = "none"
 }
 
+variable "subnet" {
+  description = "allspark subnet to attach too, defaults to admin"
+  default = "admin"
+}
+
 variable "vm" {
   description = "VM Configuration"
   default     = "std_ubuntu_server" # bastion, std_windows_server
