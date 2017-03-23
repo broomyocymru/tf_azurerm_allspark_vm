@@ -33,3 +33,31 @@ resource "azurerm_network_interface" "public_nic" {
         public_ip_address_id = "${azurerm_public_ip.ip.id}"
     }
 }
+
+resource "azurerm_network_security_rule" "inbound" {
+  name                        = "default_inbound"
+  priority                    = 1000
+  direction                   = "Inbound"
+  access                      = "Deny"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = "${var.allspark["resource_group_name"]}"
+  network_security_group_name = "${module.subnet_config.nsg_id}"
+}
+
+resource "azurerm_network_security_rule" "outbound" {
+  name                        = "default_outbound"
+  priority                    = 1000
+  direction                   = "Inbound"
+  access                      = "Deny"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = "${var.allspark["resource_group_name"]}"
+  network_security_group_name = "${module.subnet_config.nsg_id}"
+}
