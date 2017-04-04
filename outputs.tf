@@ -6,6 +6,10 @@ output "private_ip" {
   value = "${join(",", concat(azurerm_network_interface.public_nic.*.private_ip_address, azurerm_network_interface.private_nic.*.private_ip_address))}"
 }
 
+output "bastion_ip" {
+  value = "${var.allspark["bastion_ip"]}"
+}
+
 output "username" {
   value = "${var.username}"
 }
