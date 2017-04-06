@@ -17,3 +17,11 @@ output "username" {
 output "password" {
   value = "${var.password}"
 }
+
+output "allspark_data" {
+  value = {
+    bastion_ip = "${var.allspark["bastion_ip"]}"
+    private_ip = "${join(",", concat(azurerm_network_interface.public_nic.*.private_ip_address, azurerm_network_interface.private_nic.*.private_ip_address))}"
+    public_ip  = "${join(",", azurerm_public_ip.ip.*.ip_address)}"
+  }
+}
