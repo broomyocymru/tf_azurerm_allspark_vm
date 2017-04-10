@@ -32,6 +32,6 @@ resource "azurerm_virtual_machine" "windows" {
         role = "${var.role}"
         os = "${module.vm_config.offer}-${module.vm_config.sku}"
         ssh_user = "${var.username}"
-        ssh_ip = "${element(concat(azurerm_network_interface.public_nic.*.id, azurerm_network_interface.private_nic.*.id),0)}"
+        ssh_ip = "${element(concat(azurerm_network_interface.public_nic.*.private_ip_address, azurerm_network_interface.private_nic.*.private_ip_address),0)}"
     }
 }
