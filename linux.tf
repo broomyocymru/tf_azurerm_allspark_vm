@@ -42,7 +42,7 @@ resource "azurerm_virtual_machine" "linux" {
         os = "${module.vm_config.offer}-${module.vm_config.sku}"
         ssh_user = "${var.username}"
         ssh_ip = "${element(concat(azurerm_network_interface.public_nic.*.private_ip_address, azurerm_network_interface.private_nic.*.private_ip_address),0)}"
-        remote_connect = "ssh"
+        remote_connection = "ssh"
         remote_port = "22"
     }
 }
