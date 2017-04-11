@@ -44,7 +44,7 @@ resource "azurerm_virtual_machine" "windows" {
             pass = "oobeSystem"
             component = "Microsoft-Windows-Shell-Setup"
             setting_name = "FirstLogonCommands"
-            content = "${file("winrm.xml")}"
+            content = "${file("${path.module}/winrm.xml")}"
         }
     }
 
