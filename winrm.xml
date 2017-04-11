@@ -5,7 +5,7 @@
         <Order>11</Order>
     </SynchronousCommand>
     <SynchronousCommand>
-        <CommandLine>powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\winem.ps1</CommandLine
+        <CommandLine>powershell.exe -sta -ExecutionPolicy Unrestricted -file C:\winrm.ps1</CommandLine
         ><Description>RunScript</Description>
         <Order>12</Order>
     </SynchronousCommand>

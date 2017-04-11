@@ -26,7 +26,7 @@ resource "azurerm_virtual_machine" "windows" {
         admin_username = "${var.username}"
         admin_password = "${var.password}"
 
-        custom_data = "${base64encode("Param($RemoteHostName = \"${var.name}\", $ComputerName = \"${var.name}\", $WinRmPort = 5986) ${file("${path.module}/winrm.ps1")}")}"
+        custom_data = "${base64encode("${file("${path.module}/winrm.ps1")}")}"
     }
 
     os_profile_windows_config {
