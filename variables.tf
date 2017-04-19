@@ -30,7 +30,7 @@ variable "vm" {
   default     = "std_ubuntu_server" # bastion, std_windows_server
 }
 
-variable "public_ip" {
-  description = "Public IP"
-  default     = ""
+variable "disk_size" {
+  description = "OS Disk size in GB"
+  default     = "40"
 }

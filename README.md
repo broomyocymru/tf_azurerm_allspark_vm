@@ -5,17 +5,19 @@ Terraform module to configure a VM within an allspark setup.
 This module depends on tf_azurerm_allspark being used.
 
 ## Input variables
-  * allspark [required] - n.b. this is a map of data generated from tf_azurerm_allspark
+  * allspark [required] - n.b. this is a map of data generated from tf_azurerm_allspark_vpc
   * name [required]
   * username [required]
   * password [required]
-  * image [optional - Standard_D2_v2]
-  * role [optional - none] - used to tag vm for provisioning
-  * os [optional - ubuntu] - used to tag vm for provisioning
+  * vm [optional - Standard_D2_v2]
 
 
 ## Outputs
-  None
+  * private_ip
+  * bastion_ip
+  * username
+  * password
+  * allspark_data { bastion_ip, username, private_ip}
 
 
 ## Example use

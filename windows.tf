@@ -3,8 +3,7 @@ resource "azurerm_virtual_machine" "windows" {
     name = "${var.name}"
     location = "${var.allspark["location"]}"
     resource_group_name = "${var.allspark["resource_group_name"]}"
-    # todo - remove picking first element once terraform supports multiple nics
-    network_interface_ids = ["${element(concat(azurerm_network_interface.public_nic.*.id, azurerm_network_interface.private_nic.*.id),0)}"]
+    network_interface_ids = ["${azurerm_network_interface.private_nic.id}"]
     vm_size = "${module.vm_config.image}"
 
     storage_image_reference {
@@ -16,16 +15,16 @@ resource "azurerm_virtual_machine" "windows" {
 
     storage_os_disk {
         name = "${var.name}_os"
-        vhd_uri = "${var.allspark["storage_account_endpoint"]}${module.subnet_config.storage_container}/${var.name}_os_disk.vhd"
         caching = "ReadWrite"
         create_option = "FromImage"
+        managed_disk_type = "Standard_LRS"
+        disk_size_gb = "${var.disk_size}"
     }
 
     os_profile {
         computer_name = "${var.name}"
         admin_username = "${var.username}"
         admin_password = "${var.password}"
-
         custom_data = "${base64encode("${file("${path.module}/winrm.ps1")}")}"
     }
 
@@ -53,7 +52,7 @@ resource "azurerm_virtual_machine" "windows" {
         role = "${var.role}"
         os = "${module.vm_config.offer}-${module.vm_config.sku}"
         ssh_user = "${var.username}"
-        ssh_ip = "${element(concat(azurerm_network_interface.public_nic.*.private_ip_address, azurerm_network_interface.private_nic.*.private_ip_address),0)}"
+        ssh_ip = "${azurerm_network_interface.private_nic.private_ip_address}"
         remote_connection = "winrm"
         remote_port = "5986"
     }
