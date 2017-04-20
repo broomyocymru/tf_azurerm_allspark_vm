@@ -3,6 +3,11 @@ variable "allspark" {
   type = "map"
 }
 
+variable "bastion" {
+  description = "bastion data"
+  type = "map"
+}
+
 variable "name" {
   description = "Hostname"
 }
@@ -33,4 +38,16 @@ variable "vm" {
 variable "disk_size" {
   description = "OS Disk size in GB"
   default     = "40"
+}
+
+variable "vpc_inbound_ports" {
+  description = ""
+  type = "list"
+  default = []
+}
+
+variable "vpc_outbound_ports" {
+  description = ""
+  type = "list"
+  default = []
 }

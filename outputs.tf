@@ -16,7 +16,7 @@ output "password" {
 
 output "allspark_data" {
   value = {
-    bastion_ip = "${var.allspark["bastion_ip"]}"
+    bastion_ip = "${var.bastion["bastion_ip"]}"
     username   = "${var.username}"
     private_ip = "${azurerm_network_interface.private_nic.private_ip_address}"
   }
