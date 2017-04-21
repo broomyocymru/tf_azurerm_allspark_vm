@@ -10,6 +10,7 @@ variable "options" {
     "bastion" = "Standard_D2_v2,Canonical,UbuntuServer,16.04-LTS,latest,linux"
     "std_windows_server" = "Standard_D2_v2,MicrosoftWindowsServer,WindowsServer,2012-R2-Datacenter,latest,windows"
     "std_ubuntu_server" = "Standard_D2_v2,Canonical,UbuntuServer,16.04-LTS,latest,linux",
-    "desktop_win10" = "Standard_D2_v2,MicrosoftWindowsServer,Windows-HUB,Windows-10-HUB,latest,windows"
+    "desktop_win10" = "Standard_D2_v2,MicrosoftWindowsServer,Windows-HUB,Windows-10-HUB,latest,windows",
+    "desktop_ubuntu16" = "Standard_D2_v2,Canonical,UbuntuServer,16.04-LTS,latest,linux"
   }
 }
