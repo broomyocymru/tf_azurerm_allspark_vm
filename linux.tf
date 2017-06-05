@@ -37,7 +37,8 @@ resource "azurerm_virtual_machine" "linux" {
     }
 
     tags {
-        environment = "${var.allspark["resource_group_name"]}"
+        project = "${var.allspark["tag_proj"]}"
+        environment =  "${var.allspark["tag_env"]}"
         role = "${var.role}"
         os = "${module.vm_config.offer}-${module.vm_config.sku}"
         ssh_user = "${var.username}"

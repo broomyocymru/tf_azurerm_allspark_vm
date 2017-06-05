@@ -8,6 +8,11 @@ resource "azurerm_network_interface" "private_nic" {
         subnet_id = "${module.subnet_config.id}"
         private_ip_address_allocation = "dynamic"
     }
+
+    tags {
+      project = "${var.allspark["tag_proj"]}"
+      environment =  "${var.allspark["tag_env"]}"
+    }
 }
 
 resource "azurerm_network_security_rule" "inbound_rules" {
