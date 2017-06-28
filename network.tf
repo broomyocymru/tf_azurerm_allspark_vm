@@ -1,7 +1,19 @@
+resource "azurerm_network_security_group" "nsg" {
+  name                = "${var.name}_nic0_nsg"
+  location            = "${var.allspark["location"]}"
+  resource_group_name = "${var.allspark["resource_group_name"]}"
+
+  tags {
+    project = "${var.allspark["tag_proj"]}"
+    environment =  "${var.allspark["tag_env"]}"
+  }
+}
+
 resource "azurerm_network_interface" "private_nic" {
     name = "${var.name}_nic0"
     location = "${var.allspark["location"]}"
     resource_group_name = "${var.allspark["resource_group_name"]}"
+    network_security_group_id = "${azurerm_network_security_group.nsg.id}"
 
     ip_configuration {
         name = "${var.name}_ip"
@@ -27,7 +39,7 @@ resource "azurerm_network_security_rule" "inbound_rules" {
     source_address_prefix       = "VirtualNetwork"
     destination_address_prefix  = "*"
     resource_group_name         = "${var.allspark["resource_group_name"]}"
-    network_security_group_name = "${module.subnet_config.nsg_name}"
+    network_security_group_name = "${var.name}_nic0_nsg"
 }
 
 resource "azurerm_network_security_rule" "outbound_rules" {
@@ -42,5 +54,5 @@ resource "azurerm_network_security_rule" "outbound_rules" {
     source_address_prefix       = "VirtualNetwork"
     destination_address_prefix  = "*"
     resource_group_name         = "${var.allspark["resource_group_name"]}"
-    network_security_group_name = "${module.subnet_config.nsg_name}"
+    network_security_group_name = "${var.name}_nic0_nsg"
 }
